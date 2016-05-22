@@ -1,0 +1,39 @@
+﻿@model IEnumerable<WorkflowTracker.Models.MasterStep>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MasterStepName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StepStatus)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MasterStepName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StepStatus)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MasterID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MasterID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MasterID })
+        </td>
+    </tr>
+}
+
+</table>

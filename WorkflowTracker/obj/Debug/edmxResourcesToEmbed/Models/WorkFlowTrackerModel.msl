@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="emahajanDataBaseModelStoreContainer" CdmEntityContainer="emahajanDataBaseEntities2">
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="emahajanDataBaseModel.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="StepID" ColumnName="StepID" />
+          <ScalarProperty Name="CommentDate" ColumnName="CommentDate" />
+          <ScalarProperty Name="text" ColumnName="text" />
+          <ScalarProperty Name="attachment" ColumnName="attachment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Justifications">
+      <EntityTypeMapping TypeName="emahajanDataBaseModel.Justification">
+        <MappingFragment StoreEntitySet="Justification">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="StepID" ColumnName="StepID" />
+          <ScalarProperty Name="JustificationDate" ColumnName="JustificationDate" />
+          <ScalarProperty Name="JustificationText" ColumnName="JustificationText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Detail">
+      <EntityTypeMapping TypeName="emahajanDataBaseModel.Project_Detail">
+        <MappingFragment StoreEntitySet="Project_Detail">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Creation_date" ColumnName="Creation_date" />
+          <ScalarProperty Name="Org_Comp_date" ColumnName="Org_Comp_date" />
+          <ScalarProperty Name="Curr_Comp_date" ColumnName="Curr_Comp_date" />
+          <ScalarProperty Name="Act_Comp_date" ColumnName="Act_Comp_date" />
+          <ScalarProperty Name="Progress" ColumnName="Progress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolesIDs">
+      <EntityTypeMapping TypeName="emahajanDataBaseModel.RolesID">
+        <MappingFragment StoreEntitySet="RolesID">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Step_Detail">
+      <EntityTypeMapping TypeName="emahajanDataBaseModel.Step_Detail">
+        <MappingFragment StoreEntitySet="Step_Detail">
+          <ScalarProperty Name="StepID" ColumnName="StepID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Est_Start_date" ColumnName="Est_Start_date" />
+          <ScalarProperty Name="Est_End_date" ColumnName="Est_End_date" />
+          <ScalarProperty Name="Act_Start_date" ColumnName="Act_Start_date" />
+          <ScalarProperty Name="Act_End_date" ColumnName="Act_End_date" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_Detail">
+      <EntityTypeMapping TypeName="emahajanDataBaseModel.User_Detail">
+        <MappingFragment StoreEntitySet="User_Detail">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Last_Login_date" ColumnName="Last_Login_date" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Project_Detail">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ProjectName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Creation_date" Type="datetime" Nullable="false" />
+    <Property Name="Org_Comp_date" Type="datetime" Nullable="false" />
+    <Property Name="Curr_Comp_date" Type="datetime" Nullable="false" />
+    <Property Name="Act_Comp_date" Type="datetime" Nullable="false" />
+    <Property Name="Progress" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Step_Detail">
+    <Key>
+      <PropertyRef Name="StepID" />
+    </Key>
+    <Property Name="StepID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Est_Start_date" Type="datetime" Nullable="false" />
+    <Property Name="Est_End_date" Type="datetime" Nullable="false" />
+    <Property Name="Act_Start_date" Type="datetime" Nullable="false" />
+    <Property Name="Act_End_date" Type="datetime" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+  </EntityType>
+  <Association Name="FK__Step_Deta__Proje__2D27B809">
+    <End Role="Project_Detail" Type="Self.Project_Detail" Multiplicity="0..1" />
+    <End Role="Step_Detail" Type="Self.Step_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project_Detail">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Step_Detail">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelsStoreContainer">
+    <EntitySet Name="Project_Detail" EntityType="Self.Project_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Step_Detail" EntityType="Self.Step_Detail" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Step_Deta__Proje__2D27B809" Association="Self.FK__Step_Deta__Proje__2D27B809">
+      <End Role="Project_Detail" EntitySet="Project_Detail" />
+      <End Role="Step_Detail" EntitySet="Step_Detail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

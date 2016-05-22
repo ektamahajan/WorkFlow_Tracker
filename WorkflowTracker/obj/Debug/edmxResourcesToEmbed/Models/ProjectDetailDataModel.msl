@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelsStoreContainer" CdmEntityContainer="emahajanDataBaseEntities1">
+    <EntitySetMapping Name="Project_Detail">
+      <EntityTypeMapping TypeName="Models.Project_Detail">
+        <MappingFragment StoreEntitySet="Project_Detail">
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Creation_date" ColumnName="Creation_date" />
+          <ScalarProperty Name="Org_Comp_date" ColumnName="Org_Comp_date" />
+          <ScalarProperty Name="Curr_Comp_date" ColumnName="Curr_Comp_date" />
+          <ScalarProperty Name="Act_Comp_date" ColumnName="Act_Comp_date" />
+          <ScalarProperty Name="Progress" ColumnName="Progress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Step_Detail">
+      <EntityTypeMapping TypeName="Models.Step_Detail">
+        <MappingFragment StoreEntitySet="Step_Detail">
+          <ScalarProperty Name="StepID" ColumnName="StepID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Est_Start_date" ColumnName="Est_Start_date" />
+          <ScalarProperty Name="Est_End_date" ColumnName="Est_End_date" />
+          <ScalarProperty Name="Act_Start_date" ColumnName="Act_Start_date" />
+          <ScalarProperty Name="Act_End_date" ColumnName="Act_End_date" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -Welcome Layout</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/fullcalendarcss")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/datepicker")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("WorkFlow Tracker", "Index", "ProjectDetails", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+               <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("History Report", "HistoryReport", "Welcome")</li>
+                    <li>@Html.ActionLink("Calendar View", "CalendarView", "Welcome")</li>
+                  
+                   @if (System.Web.HttpContext.Current.User.IsInRole("Admin"))
+                   {
+                    <li>@Html.ActionLink("Admin", "AdminTasks", "Welcome")</li>
+                   }
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/fullcalendarjs")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datePicker")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

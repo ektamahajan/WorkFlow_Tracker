@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="emahajanDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Comments">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="StepID" Type="int" />
+    <Property Name="CommentDate" Type="datetime" Nullable="false" />
+    <Property Name="text" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="attachment" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Justification">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="StepID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="StepID" Type="int" Nullable="false" />
+    <Property Name="JustificationDate" Type="datetime" Nullable="false" />
+    <Property Name="JustificationText" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project_Detail">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="ProjectName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Creation_date" Type="datetime" Nullable="false" />
+    <Property Name="Org_Comp_date" Type="datetime" Nullable="false" />
+    <Property Name="Curr_Comp_date" Type="datetime" Nullable="false" />
+    <Property Name="Act_Comp_date" Type="datetime" Nullable="false" />
+    <Property Name="Progress" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolesID">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="AdminID" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Step_Detail">
+    <Key>
+      <PropertyRef Name="StepID" />
+    </Key>
+    <Property Name="StepID" Type="int" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Est_Start_date" Type="datetime" Nullable="false" />
+    <Property Name="Est_End_date" Type="datetime" Nullable="false" />
+    <Property Name="Act_Start_date" Type="datetime" Nullable="false" />
+    <Property Name="Act_End_date" Type="datetime" Nullable="false" />
+    <Property Name="ProjectID" Type="int" />
+  </EntityType>
+  <EntityType Name="User_Detail">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="EmailId" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Last_Login_date" Type="datetime" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Comments__StepID__1920BF5C">
+    <End Role="Step_Detail" Type="Self.Step_Detail" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Step_Detail">
+        <PropertyRef Name="StepID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="StepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__UserID__182C9B23">
+    <End Role="User_Detail" Type="Self.User_Detail" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Detail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Justifica__StepI__24927208">
+    <End Role="Step_Detail" Type="Self.Step_Detail" Multiplicity="1" />
+    <End Role="Justification" Type="Self.Justification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Step_Detail">
+        <PropertyRef Name="StepID" />
+      </Principal>
+      <Dependent Role="Justification">
+        <PropertyRef Name="StepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Justifica__UserI__239E4DCF">
+    <End Role="User_Detail" Type="Self.User_Detail" Multiplicity="1" />
+    <End Role="Justification" Type="Self.Justification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Detail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Justification">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Project_D__UserI__1273C1CD">
+    <End Role="User_Detail" Type="Self.User_Detail" Multiplicity="0..1" />
+    <End Role="Project_Detail" Type="Self.Project_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Detail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Project_Detail">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolesID__UserID__2C3393D0">
+    <End Role="User_Detail" Type="Self.User_Detail" Multiplicity="0..1" />
+    <End Role="RolesID" Type="Self.RolesID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Detail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="RolesID">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Step_Deta__Proje__2D27B809">
+    <End Role="Project_Detail" Type="Self.Project_Detail" Multiplicity="0..1" />
+    <End Role="Step_Detail" Type="Self.Step_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project_Detail">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Step_Detail">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="emahajanDataBaseModelStoreContainer">
+    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Justification" EntityType="Self.Justification" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project_Detail" EntityType="Self.Project_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolesID" EntityType="Self.RolesID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Step_Detail" EntityType="Self.Step_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_Detail" EntityType="Self.User_Detail" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Comments__StepID__1920BF5C" Association="Self.FK__Comments__StepID__1920BF5C">
+      <End Role="Step_Detail" EntitySet="Step_Detail" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__UserID__182C9B23" Association="Self.FK__Comments__UserID__182C9B23">
+      <End Role="User_Detail" EntitySet="User_Detail" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Justifica__StepI__24927208" Association="Self.FK__Justifica__StepI__24927208">
+      <End Role="Step_Detail" EntitySet="Step_Detail" />
+      <End Role="Justification" EntitySet="Justification" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Justifica__UserI__239E4DCF" Association="Self.FK__Justifica__UserI__239E4DCF">
+      <End Role="User_Detail" EntitySet="User_Detail" />
+      <End Role="Justification" EntitySet="Justification" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Project_D__UserI__1273C1CD" Association="Self.FK__Project_D__UserI__1273C1CD">
+      <End Role="User_Detail" EntitySet="User_Detail" />
+      <End Role="Project_Detail" EntitySet="Project_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolesID__UserID__2C3393D0" Association="Self.FK__RolesID__UserID__2C3393D0">
+      <End Role="User_Detail" EntitySet="User_Detail" />
+      <End Role="RolesID" EntitySet="RolesID" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Step_Deta__Proje__2D27B809" Association="Self.FK__Step_Deta__Proje__2D27B809">
+      <End Role="Project_Detail" EntitySet="Project_Detail" />
+      <End Role="Step_Detail" EntitySet="Step_Detail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

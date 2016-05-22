@@ -1,0 +1,82 @@
+﻿@model WorkflowTracker.Models.ProjectDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProjectDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Progress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Progress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstOrgCompDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstOrgCompDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstCurrCompDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstCurrCompDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActCompDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActCompDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.firstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProjectID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

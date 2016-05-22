@@ -1,0 +1,80 @@
+﻿@*@model WorkflowTracker.Models.StepDetail
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StepDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectDetail.ProjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectDetail.ProjectName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>*@

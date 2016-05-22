@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WorkflowTracker.Models.ProjectDetail>
+
+@{
+    ViewBag.Title = "CalendarView";
+}
+
+<h2>CalendarView</h2>
+
+
+<div class="jumbotron">
+    <h1>Project Calendar</h1>
+    <div id="calendar"></div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $('#calendar').fullCalendar({
+                theme: true,
+
+                header:{
+                    left: 'prev , next, today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+
+                defaultView: 'month',
+                editable: false,
+                allDaySlot: false,
+                selectable: true,
+                slotMinutes: 60,
+                events: "/Welcome/GetEvents/"
+            
+                });
+        });
+
+
+    </script>
+}

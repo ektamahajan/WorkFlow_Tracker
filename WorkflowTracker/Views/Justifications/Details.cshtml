@@ -1,0 +1,63 @@
+﻿@model IEnumerable<WorkflowTracker.Models.Justification>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JustificationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JustificationText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrevStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StepDetail.StepName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.JustificationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JustificationText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrevStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StepDetail.StepName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.JustID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JustID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JustID })
+        </td>
+    </tr>
+}
+
+</table>

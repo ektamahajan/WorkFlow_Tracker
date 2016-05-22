@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="emahajanDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="lastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__UserID__5812160E" FromRole="AspNetUsers" ToRole="Comments" />
+    <NavigationProperty Name="Justifications" Relationship="Self.FK__Justifica__UserI__5FB337D6" FromRole="AspNetUsers" ToRole="Justification" />
+    <NavigationProperty Name="ProjectDetails" Relationship="Self.FK__ProjectDe__UserI__52593CB8" FromRole="AspNetUsers" ToRole="ProjectDetail" />
+    <NavigationProperty Name="UserProjects" Relationship="Self.FK__UserProje__UserI__7E37BEF6" FromRole="AspNetUsers" ToRole="UserProject" />
+    <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="StepID" Type="Int32" />
+    <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="attachment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Comments__UserID__5812160E" FromRole="Comments" ToRole="AspNetUsers" />
+    <NavigationProperty Name="StepDetail" Relationship="Self.FK__Comments__StepID__59063A47" FromRole="Comments" ToRole="StepDetail" />
+  </EntityType>
+  <EntityType Name="Justification">
+    <Key>
+      <PropertyRef Name="JustID" />
+    </Key>
+    <Property Name="JustID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="StepID" Type="Int32" />
+    <Property Name="JustificationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="JustificationText" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrevStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NewStatus" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK__Justifica__UserI__5FB337D6" FromRole="Justification" ToRole="AspNetUsers" />
+    <NavigationProperty Name="StepDetail" Relationship="Self.FK__Justifica__StepI__60A75C0F" FromRole="Justification" ToRole="StepDetail" />
+  </EntityType>
+  <EntityType Name="MasterStep">
+    <Key>
+      <PropertyRef Name="MasterID" />
+    </Key>
+    <Property Name="MasterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MasterStepName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="StepStatus" Type="Boolean" />
+    <NavigationProperty Name="StepDetails" Relationship="Self.FK__StepDetai__Maste__6383C8BA" FromRole="MasterStep" ToRole="StepDetail" />
+  </EntityType>
+  <EntityType Name="ProjectDetail">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Progress" Type="Int32" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EstOrgCompDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EstCurrCompDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ActCompDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK__ProjectDe__UserI__52593CB8" FromRole="ProjectDetail" ToRole="AspNetUsers" />
+    <NavigationProperty Name="StepDetails" Relationship="Self.FK__StepDetai__Proje__5535A963" FromRole="ProjectDetail" ToRole="StepDetail" />
+    <NavigationProperty Name="UserProjects" Relationship="Self.FK__UserProje__Proje__7F2BE32F" FromRole="ProjectDetail" ToRole="UserProject" />
+  </EntityType>
+  <EntityType Name="StepDetail">
+    <Key>
+      <PropertyRef Name="StepID" />
+    </Key>
+    <Property Name="StepID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectID" Type="Int32" />
+    <Property Name="EstStartDate" Type="DateTime" Precision="0" />
+    <Property Name="EstEndDate" Type="DateTime" Precision="0" />
+    <Property Name="ActStartDate" Type="DateTime" Precision="0" />
+    <Property Name="ActEndDate" Type="DateTime" Precision="0" />
+    <Property Name="StepName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="MasterID" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__StepID__59063A47" FromRole="StepDetail" ToRole="Comments" />
+    <NavigationProperty Name="Justifications" Relationship="Self.FK__Justifica__StepI__60A75C0F" FromRole="StepDetail" ToRole="Justification" />
+    <NavigationProperty Name="MasterStep" Relationship="Self.FK__StepDetai__Maste__6383C8BA" FromRole="StepDetail" ToRole="MasterStep" />
+    <NavigationProperty Name="ProjectDetail" Relationship="Self.FK__StepDetai__Proje__5535A963" FromRole="StepDetail" ToRole="ProjectDetail" />
+  </EntityType>
+  <EntityType Name="UserProject">
+    <Key>
+      <PropertyRef Name="UPID" />
+    </Key>
+    <Property Name="UPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProjectID" Type="Int32" />
+    <NavigationProperty Name="AspNetUser" Relationship="Self.FK__UserProje__UserI__7E37BEF6" FromRole="UserProject" ToRole="AspNetUsers" />
+    <NavigationProperty Name="ProjectDetail" Relationship="Self.FK__UserProje__Proje__7F2BE32F" FromRole="UserProject" ToRole="ProjectDetail" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__UserID__5812160E">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Justifica__UserI__5FB337D6">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="Justification" Type="Self.Justification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Justification">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ProjectDe__UserI__52593CB8">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectDetail">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserProje__UserI__7E37BEF6">
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
+    <End Role="UserProject" Type="Self.UserProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProject">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__StepID__59063A47">
+    <End Role="StepDetail" Type="Self.StepDetail" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StepDetail">
+        <PropertyRef Name="StepID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="StepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Justifica__StepI__60A75C0F">
+    <End Role="StepDetail" Type="Self.StepDetail" Multiplicity="0..1" />
+    <End Role="Justification" Type="Self.Justification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StepDetail">
+        <PropertyRef Name="StepID" />
+      </Principal>
+      <Dependent Role="Justification">
+        <PropertyRef Name="StepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StepDetai__Maste__6383C8BA">
+    <End Role="MasterStep" Type="Self.MasterStep" Multiplicity="0..1" />
+    <End Role="StepDetail" Type="Self.StepDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MasterStep">
+        <PropertyRef Name="MasterID" />
+      </Principal>
+      <Dependent Role="StepDetail">
+        <PropertyRef Name="MasterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__StepDetai__Proje__5535A963">
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="0..1" />
+    <End Role="StepDetail" Type="Self.StepDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectDetail">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="StepDetail">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserProje__Proje__7F2BE32F">
+    <End Role="ProjectDetail" Type="Self.ProjectDetail" Multiplicity="0..1" />
+    <End Role="UserProject" Type="Self.UserProject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectDetail">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="UserProject">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
+    <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="emahajanDataBaseEntities5" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Justifications" EntityType="Self.Justification" />
+    <EntitySet Name="MasterSteps" EntityType="Self.MasterStep" />
+    <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetail" />
+    <EntitySet Name="StepDetails" EntityType="Self.StepDetail" />
+    <EntitySet Name="UserProjects" EntityType="Self.UserProject" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__UserID__5812160E" Association="Self.FK__Comments__UserID__5812160E">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Justifica__UserI__5FB337D6" Association="Self.FK__Justifica__UserI__5FB337D6">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Justification" EntitySet="Justifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ProjectDe__UserI__52593CB8" Association="Self.FK__ProjectDe__UserI__52593CB8">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserProje__UserI__7E37BEF6" Association="Self.FK__UserProje__UserI__7E37BEF6">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="UserProject" EntitySet="UserProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__StepID__59063A47" Association="Self.FK__Comments__StepID__59063A47">
+      <End Role="StepDetail" EntitySet="StepDetails" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Justifica__StepI__60A75C0F" Association="Self.FK__Justifica__StepI__60A75C0F">
+      <End Role="StepDetail" EntitySet="StepDetails" />
+      <End Role="Justification" EntitySet="Justifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StepDetai__Maste__6383C8BA" Association="Self.FK__StepDetai__Maste__6383C8BA">
+      <End Role="MasterStep" EntitySet="MasterSteps" />
+      <End Role="StepDetail" EntitySet="StepDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__StepDetai__Proje__5535A963" Association="Self.FK__StepDetai__Proje__5535A963">
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+      <End Role="StepDetail" EntitySet="StepDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserProje__Proje__7F2BE32F" Association="Self.FK__UserProje__Proje__7F2BE32F">
+      <End Role="ProjectDetail" EntitySet="ProjectDetails" />
+      <End Role="UserProject" EntitySet="UserProjects" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="HISTORY_REPORT" EntityType="emahajanDataBaseModel.HISTORY_REPORT" />
+    <EntitySet Name="HISTORY_REPORT1" EntityType="emahajanDataBaseModel.HISTORY_REPORT1" />
+  </EntityContainer>
+  <EntityType Name="HISTORY_REPORT">
+    <Key>
+      <PropertyRef Name="PROJECTID" />
+    </Key>
+    <Property Name="PROJECTID" Type="Int32" Nullable="false" />
+    <Property Name="PROJECTNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="STEPNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="COMMENTCREATIONDATE" Type="DateTime" Precision="0" />
+    <Property Name="COMMENT_OWNER" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PREVIOUSSTATUS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CURRENTSTATUS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="REASON" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="STATUSCHANGEDATE" Type="DateTime" Precision="0" />
+    <Property Name="STATUS_OWNER" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HISTORY_REPORT1">
+    <Key>
+      <PropertyRef Name="PROJECTID" />
+    </Key>
+    <Property Name="PROJECTID" Type="Int32" Nullable="false" />
+    <Property Name="PROJECTNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="STEPNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="COMMENTCREATIONDATE" Type="DateTime" Precision="0" />
+    <Property Name="COMMENT_OWNER" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="COMMENTS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PREVIOUSSTATUS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="CURRENTSTATUS" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="REASON" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="STATUSCHANGEDATE" Type="DateTime" Precision="0" />
+    <Property Name="STATUS_OWNER" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

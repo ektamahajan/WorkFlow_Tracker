@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WorkflowTracker.Models.StepDetail>
+
+@{
+    ViewBag.Title = "Step";
+}
+
+<h2>Steps</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+
+            @Html.DisplayNameFor(model => model.StepName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActEndDate)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectDetail.ProjectName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.StepName, "Details", new { id = item.StepID })
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActEndDate)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectDetail.ProjectName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StepID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StepID }) 
+          @*  @Html.ActionLink("Delete", "Delete", new { id=item.StepID })*@
+        </td>
+    </tr>
+}
+
+</table>

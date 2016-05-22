@@ -1,0 +1,86 @@
+﻿@model IEnumerable<WorkflowTracker.Models.HISTORY_REPORT1>
+
+@{
+    ViewBag.Title = "HistoryReport";
+}
+
+<h2>HistoryReport</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PROJECTNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STEPNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COMMENTCREATIONDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COMMENT_OWNER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COMMENTS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FILENAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PREVIOUSSTATUS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CURRENTSTATUS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.REASON)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STATUSCHANGEDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STATUS_OWNER)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROJECTNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STEPNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COMMENTCREATIONDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COMMENT_OWNER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COMMENTS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FILENAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PREVIOUSSTATUS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CURRENTSTATUS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.REASON)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STATUSCHANGEDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STATUS_OWNER)
+        </td>
+ 
+    </tr>
+}
+
+</table>

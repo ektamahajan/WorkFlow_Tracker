@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="emahajanDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="CommentID" />
+    </Key>
+    <Property Name="CommentID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="StepID" Type="Int32" />
+    <Property Name="AdminID" Type="Int32" />
+    <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="text" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="attachment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Step_Detail" Relationship="Self.FK__Comments__StepID__1920BF5C" FromRole="Comments" ToRole="Step_Detail" />
+    <NavigationProperty Name="User_Detail" Relationship="Self.FK__Comments__UserID__182C9B23" FromRole="Comments" ToRole="User_Detail" />
+  </EntityType>
+  <EntityType Name="Justification">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="StepID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="StepID" Type="Int32" Nullable="false" />
+    <Property Name="JustificationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="JustificationText" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Step_Detail" Relationship="Self.FK__Justifica__StepI__24927208" FromRole="Justification" ToRole="Step_Detail" />
+    <NavigationProperty Name="User_Detail" Relationship="Self.FK__Justifica__UserI__239E4DCF" FromRole="Justification" ToRole="User_Detail" />
+  </EntityType>
+  <EntityType Name="Project_Detail">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="ProjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Creation_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Org_Comp_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Curr_Comp_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Act_Comp_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Progress" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User_Detail" Relationship="Self.FK__Project_D__UserI__1273C1CD" FromRole="Project_Detail" ToRole="User_Detail" />
+    <NavigationProperty Name="User_Detail1" Relationship="Self.UserProject" FromRole="Project_Detail" ToRole="User_Detail" />
+    <NavigationProperty Name="Step_Detail" Relationship="emahajanDataBaseModel.FK__Step_Deta__Proje__2D27B809" FromRole="Project_Detail" ToRole="Step_Detail" />
+  </EntityType>
+  <EntityType Name="Step_Detail">
+    <Key>
+      <PropertyRef Name="StepID" />
+    </Key>
+    <Property Name="StepID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Est_Start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Est_End_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Act_Start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Act_End_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__StepID__1920BF5C" FromRole="Step_Detail" ToRole="Comments" />
+    <NavigationProperty Name="Justifications" Relationship="Self.FK__Justifica__StepI__24927208" FromRole="Step_Detail" ToRole="Justification" />
+    <Property Name="ProjectID" Type="Int32" />
+    <NavigationProperty Name="Project_Detail" Relationship="emahajanDataBaseModel.FK__Step_Deta__Proje__2D27B809" FromRole="Step_Detail" ToRole="Project_Detail" />
+  </EntityType>
+  <EntityType Name="User_Detail">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Last_Login_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK__Comments__UserID__182C9B23" FromRole="User_Detail" ToRole="Comments" />
+    <NavigationProperty Name="Justifications" Relationship="Self.FK__Justifica__UserI__239E4DCF" FromRole="User_Detail" ToRole="Justification" />
+    <NavigationProperty Name="Project_Detail" Relationship="Self.FK__Project_D__UserI__1273C1CD" FromRole="User_Detail" ToRole="Project_Detail" />
+    <NavigationProperty Name="Project_Detail1" Relationship="Self.UserProject" FromRole="User_Detail" ToRole="Project_Detail" />
+    <NavigationProperty Name="RolesIDs" Relationship="emahajanDataBaseModel.FK__RolesID__UserID__2C3393D0" FromRole="User_Detail" ToRole="RolesID" />
+  </EntityType>
+  <Association Name="FK__Comments__StepID__1920BF5C">
+    <End Role="Step_Detail" Type="Self.Step_Detail" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Step_Detail">
+        <PropertyRef Name="StepID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="StepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Comments__UserID__182C9B23">
+    <End Role="User_Detail" Type="Self.User_Detail" Multiplicity="0..1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Detail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Justifica__StepI__24927208">
+    <End Role="Step_Detail" Type="Self.Step_Detail" Multiplicity="1" />
+    <End Role="Justification" Type="Self.Justification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Step_Detail">
+        <PropertyRef Name="StepID" />
+      </Principal>
+      <Dependent Role="Justification">
+        <PropertyRef Name="StepID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Justifica__UserI__239E4DCF">
+    <End Role="User_Detail" Type="Self.User_Detail" Multiplicity="1" />
+    <End Role="Justification" Type="Self.Justification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Detail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Justification">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Project_D__UserI__1273C1CD">
+    <End Role="User_Detail" Type="Self.User_Detail" Multiplicity="0..1" />
+    <End Role="Project_Detail" Type="Self.Project_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Detail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Project_Detail">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserProject">
+    <End Role="Project_Detail" Type="Self.Project_Detail" Multiplicity="*" />
+    <End Role="User_Detail" Type="Self.User_Detail" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="emahajanDataBaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Justifications" EntityType="Self.Justification" />
+    <EntitySet Name="Project_Detail" EntityType="Self.Project_Detail" />
+    <EntitySet Name="Step_Detail" EntityType="Self.Step_Detail" />
+    <EntitySet Name="User_Detail" EntityType="Self.User_Detail" />
+    <AssociationSet Name="FK__Comments__StepID__1920BF5C" Association="Self.FK__Comments__StepID__1920BF5C">
+      <End Role="Step_Detail" EntitySet="Step_Detail" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Comments__UserID__182C9B23" Association="Self.FK__Comments__UserID__182C9B23">
+      <End Role="User_Detail" EntitySet="User_Detail" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Justifica__StepI__24927208" Association="Self.FK__Justifica__StepI__24927208">
+      <End Role="Step_Detail" EntitySet="Step_Detail" />
+      <End Role="Justification" EntitySet="Justifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Justifica__UserI__239E4DCF" Association="Self.FK__Justifica__UserI__239E4DCF">
+      <End Role="User_Detail" EntitySet="User_Detail" />
+      <End Role="Justification" EntitySet="Justifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Project_D__UserI__1273C1CD" Association="Self.FK__Project_D__UserI__1273C1CD">
+      <End Role="User_Detail" EntitySet="User_Detail" />
+      <End Role="Project_Detail" EntitySet="Project_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="UserProject" Association="Self.UserProject">
+      <End Role="Project_Detail" EntitySet="Project_Detail" />
+      <End Role="User_Detail" EntitySet="User_Detail" />
+    </AssociationSet>
+    <EntitySet Name="RolesIDs" EntityType="emahajanDataBaseModel.RolesID" />
+    <AssociationSet Name="FK__Step_Deta__Proje__2D27B809" Association="emahajanDataBaseModel.FK__Step_Deta__Proje__2D27B809">
+      <End Role="Project_Detail" EntitySet="Project_Detail" />
+      <End Role="Step_Detail" EntitySet="Step_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__RolesID__UserID__2C3393D0" Association="emahajanDataBaseModel.FK__RolesID__UserID__2C3393D0">
+      <End Role="User_Detail" EntitySet="User_Detail" />
+      <End Role="RolesID" EntitySet="RolesIDs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="RolesID">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="AdminID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User_Detail" Relationship="emahajanDataBaseModel.FK__RolesID__UserID__2C3393D0" FromRole="RolesID" ToRole="User_Detail" />
+  </EntityType>
+  <Association Name="FK__Step_Deta__Proje__2D27B809">
+    <End Type="emahajanDataBaseModel.Project_Detail" Role="Project_Detail" Multiplicity="0..1" />
+    <End Type="emahajanDataBaseModel.Step_Detail" Role="Step_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project_Detail">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Step_Detail">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__RolesID__UserID__2C3393D0">
+    <End Type="emahajanDataBaseModel.User_Detail" Role="User_Detail" Multiplicity="0..1" />
+    <End Type="emahajanDataBaseModel.RolesID" Role="RolesID" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User_Detail">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="RolesID">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

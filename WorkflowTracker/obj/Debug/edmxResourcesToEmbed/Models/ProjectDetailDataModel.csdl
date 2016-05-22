@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Project_Detail">
+    <Key>
+      <PropertyRef Name="ProjectID" />
+    </Key>
+    <Property Name="ProjectID" Type="Int32" Nullable="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="ProjectName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Creation_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Org_Comp_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Curr_Comp_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Act_Comp_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Progress" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Step_Detail" Relationship="Self.FK__Step_Deta__Proje__2D27B809" FromRole="Project_Detail" ToRole="Step_Detail" />
+  </EntityType>
+  <EntityType Name="Step_Detail">
+    <Key>
+      <PropertyRef Name="StepID" />
+    </Key>
+    <Property Name="StepID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Est_Start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Est_End_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Act_Start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Act_End_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProjectID" Type="Int32" />
+    <NavigationProperty Name="Project_Detail" Relationship="Self.FK__Step_Deta__Proje__2D27B809" FromRole="Step_Detail" ToRole="Project_Detail" />
+  </EntityType>
+  <Association Name="FK__Step_Deta__Proje__2D27B809">
+    <End Role="Project_Detail" Type="Self.Project_Detail" Multiplicity="0..1" />
+    <End Role="Step_Detail" Type="Self.Step_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project_Detail">
+        <PropertyRef Name="ProjectID" />
+      </Principal>
+      <Dependent Role="Step_Detail">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="emahajanDataBaseEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Project_Detail" EntityType="Self.Project_Detail" />
+    <EntitySet Name="Step_Detail" EntityType="Self.Step_Detail" />
+    <AssociationSet Name="FK__Step_Deta__Proje__2D27B809" Association="Self.FK__Step_Deta__Proje__2D27B809">
+      <End Role="Project_Detail" EntitySet="Project_Detail" />
+      <End Role="Step_Detail" EntitySet="Step_Detail" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

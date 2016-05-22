@@ -1,0 +1,89 @@
+﻿@model WorkflowTracker.Models.StepDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StepDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+            @Html.ActionLink("Justification", "Details", "Justifications", new { id = Model.StepID },null)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StepName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StepName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectDetail.ProjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectDetail.ProjectName)
+        </dd>
+
+    </dl>
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StepID }) |
+    @Html.ActionLink("Back to List", "Index", new { id = Model.ProjectID })
+</p>
+
+
+<p>
+    @Html.ActionLink("Add Comment", "Create", "Comments", new { id = Model.StepID }, null)
+</p>
+
+<div>
+    @{Html.RenderAction("CommentDetails", Model.Comments); }
+</div>
+ 
+
+
